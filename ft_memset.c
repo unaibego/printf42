@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubegona <ubegona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 09:12:11 by ubegona           #+#    #+#             */
-/*   Updated: 2022/10/11 10:13:54 by ubegona          ###   ########.fr       */
+/*   Created: 2022/08/30 11:59:11 by ubegona           #+#    #+#             */
+/*   Updated: 2022/09/08 10:27:29 by ubegona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "stdio.h"
-# include "fcntl.h"
-# include "unistd.h"
-# include "stdlib.h"
-# include "stdarg.h"
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned int	i;
+	char			*str;
+	char			u;
 
-int		ft_printf(char const *str, ...);
-void	ft_putnbr(int n, int *len);
-size_t	ft_strlen(const char *str);
-void	ft_putchar(char c, int *len);
-void	ft_putstr(char *s, int *len);
-void	changebase(unsigned int a, unsigned int b, int *len);
-
-#endif
+	str = (char *)s;
+	u = (char)c;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = u;
+		i++;
+	}
+	return (str);
+}

@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubegona <ubegona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 09:12:11 by ubegona           #+#    #+#             */
-/*   Updated: 2022/10/11 10:13:54 by ubegona          ###   ########.fr       */
+/*   Created: 2022/07/04 15:25:39 by ubegona           #+#    #+#             */
+/*   Updated: 2022/08/31 12:15:22 by ubegona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "stdio.h"
-# include "fcntl.h"
-# include "unistd.h"
-# include "stdlib.h"
-# include "stdarg.h"
+size_t	ft_strlen(const char *str)
+{
+	unsigned long	i;
 
-int		ft_printf(char const *str, ...);
-void	ft_putnbr(int n, int *len);
-size_t	ft_strlen(const char *str);
-void	ft_putchar(char c, int *len);
-void	ft_putstr(char *s, int *len);
-void	changebase(unsigned int a, unsigned int b, int *len);
-
-#endif
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubegona <ubegona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 09:12:11 by ubegona           #+#    #+#             */
-/*   Updated: 2022/10/11 10:13:54 by ubegona          ###   ########.fr       */
+/*   Created: 2022/09/01 15:54:17 by ubegona           #+#    #+#             */
+/*   Updated: 2022/09/08 09:06:34 by ubegona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "stdio.h"
-# include "fcntl.h"
-# include "unistd.h"
-# include "stdlib.h"
-# include "stdarg.h"
+char	*ft_strrchr(const char *s, int c)
+{
+	unsigned int	i;
+	char			*p;
 
-int		ft_printf(char const *str, ...);
-void	ft_putnbr(int n, int *len);
-size_t	ft_strlen(const char *str);
-void	ft_putchar(char c, int *len);
-void	ft_putstr(char *s, int *len);
-void	changebase(unsigned int a, unsigned int b, int *len);
-
-#endif
+	i = ft_strlen(s);
+	while (i > 0 && (unsigned char)s[i] != (unsigned char) c)
+		i--;
+	p = &((char *)s)[i];
+	if ((unsigned char)s[i] == (unsigned char)c)
+		return (p);
+	else
+		return (NULL);
+}

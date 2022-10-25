@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubegona <ubegona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 09:12:11 by ubegona           #+#    #+#             */
-/*   Updated: 2022/10/11 10:13:54 by ubegona          ###   ########.fr       */
+/*   Created: 2022/10/03 11:38:40 by ubegona           #+#    #+#             */
+/*   Updated: 2022/10/03 12:51:56 by ubegona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "stdio.h"
-# include "fcntl.h"
-# include "unistd.h"
-# include "stdlib.h"
-# include "stdarg.h"
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*ds;
+	t_list	*pr;
 
-int		ft_printf(char const *str, ...);
-void	ft_putnbr(int n, int *len);
-size_t	ft_strlen(const char *str);
-void	ft_putchar(char c, int *len);
-void	ft_putstr(char *s, int *len);
-void	changebase(unsigned int a, unsigned int b, int *len);
-
-#endif
+	if (!lst)
+		return (NULL);
+	ds = NULL;
+	while (lst)
+	{
+		pr = ft_lstnew(f(lst -> content));
+		if (!pr)
+		{
+			while (ds)
+			{
+				pr = ds -> next;
+				del(ds -> content);
+				free(ds);
+				ds = pr;
+			}
+		}
+		ft_lstadd_back(&ds, pr);
+		lst = lst ->next;
+	}
+	return (ds);
+}

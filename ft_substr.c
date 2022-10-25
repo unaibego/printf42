@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ubegona <ubegona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 09:12:11 by ubegona           #+#    #+#             */
-/*   Updated: 2022/10/11 10:13:54 by ubegona          ###   ########.fr       */
+/*   Created: 2022/09/08 10:39:08 by ubegona           #+#    #+#             */
+/*   Updated: 2022/10/04 12:36:27 by ubegona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include "stdio.h"
-# include "fcntl.h"
-# include "unistd.h"
-# include "stdlib.h"
-# include "stdarg.h"
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char			*p;
+	unsigned int	i;
+	unsigned int	j;
 
-int		ft_printf(char const *str, ...);
-void	ft_putnbr(int n, int *len);
-size_t	ft_strlen(const char *str);
-void	ft_putchar(char c, int *len);
-void	ft_putstr(char *s, int *len);
-void	changebase(unsigned int a, unsigned int b, int *len);
-
-#endif
+	i = ft_strlen(s);
+	j = 0;
+	if (len <= i)
+		p = malloc(len + 1);
+	else
+		p = malloc(i + 1);
+	if (p == 0)
+		return (NULL);
+	while (start + j < i && j < len)
+	{
+		p[j] = s[start + j];
+		j++;
+	}
+	p[j] = '\0';
+	return (p);
+}
